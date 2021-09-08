@@ -3,17 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev-ssr": "npm run dev:clint && npm run dev:serve",
+    "build:client": "vue-cli-service build",
+    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build",
+    "dev:clint": "vue-cli-service serve",
+    "dev:serve": "cross-env WEBPACK_TARGET=node ts-node ./server/index ",
+    "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
+    "axios": "^0.21.4",
     "core-js": "^3.6.5",
+    "koa": "^2.13.1",
+    "koa-proxy": "^1.0.0-alpha.3",
+    "koa-static": "^5.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-server-renderer": "^2.6.14",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "@types/koa-proxy": "^1.0.2",
+    "@types/koa-static": "^4.0.2",
+    "@types/memory-fs": "^0.3.3",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -24,13 +36,17 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",
     "lint-staged": "^9.5.0",
+    "memory-fs": "^0.5.0",
     "prettier": "^2.2.1",
-    "typescript": "~4.1.5",
-    "vue-template-compiler": "^2.6.11"
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-node-externals": "^3.0.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
